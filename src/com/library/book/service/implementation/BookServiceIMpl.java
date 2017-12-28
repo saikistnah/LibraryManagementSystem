@@ -29,7 +29,7 @@ public class BookServiceIMpl implements Ibook {
 	 */
 	public BookModel getBookByTitleAuth(String title, String author) {
 		
-		return books.stream().filter(bk->bk.getTitle().equalsIgnoreCase(title)||bk.getAuthor().equalsIgnoreCase(title)).findFirst().get();
+		return books.stream().filter(bk->bk.getTitle().equalsIgnoreCase(title)||bk.getAuthor().equalsIgnoreCase(author)).findFirst().get();
 	}
 
 	/* (non-Javadoc)
@@ -48,15 +48,29 @@ public class BookServiceIMpl implements Ibook {
 				books.remove(i);
 			}
 		}
-		return 0;
+		return books.size();
 	}
 
 	/* (non-Javadoc)
 	 * @see com.library.book.Iservice.Ibook#returnBook(com.library.book.model.BookModel)
 	 */
 	public int returnBook(BookModel book) {
-		// TODO Auto-generated method stub
-		return 0;
+        books.forEach(bk->{
+        	if(bk.getTitle().equalsIgnoreCase(book.getTitle())){
+        		bk.setCount(bk.getCount()+1);
+        	}
+        });
+		return books.size();
+	}
+
+	@Override
+	public BookModel lendBook(BookModel book) {
+		books.forEach(bk->{
+        	if(bk.getTitle().equalsIgnoreCase(book.getTitle())){
+        		bk.setCount(bk.getCount()-1);
+        	}
+        });
+		return books.stream().filter(bk->bk.getTitle().equalsIgnoreCase(book.getTitle())||bk.getAuthor().equalsIgnoreCase(book.getAuthor())).findFirst().get();
 	}
 
 }

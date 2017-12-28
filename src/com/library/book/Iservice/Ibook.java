@@ -16,5 +16,6 @@ public interface Ibook {
 	int getCount();
 	int removeBook(BookModel book);
 	int returnBook(BookModel book);
+	BookModel lendBook(BookModel book);
 
 }

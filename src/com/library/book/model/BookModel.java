@@ -13,6 +13,7 @@ public class BookModel {
 	private int bookId;
 	private String bookDesc;
 	private String author;
+	private int count;
 	
 	/**
 	 * @return the id
@@ -73,6 +74,18 @@ public class BookModel {
 	 */
 	public void setAuthor(String author) {
 		this.author = author;
+	}
+	/**
+	 * @return the count
+	 */
+	public int getCount() {
+		return count;
+	}
+	/**
+	 * @param count the count to set
+	 */
+	public void setCount(int count) {
+		this.count = count;
 	}
 	
 	
